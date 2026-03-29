@@ -1,15 +1,28 @@
 {
   "name": "generador-tickets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Library for generating premium tickets with jsPDF",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidFranco3/generador-tickets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DavidFranco3/generador-tickets/issues"
+  },
+  "homepage": "https://github.com/DavidFranco3/generador-tickets#readme",
+  "main": "dist/ticket-generator.umd.js",
+  "module": "dist/ticket-generator.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "type-check": "tsc -p . --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "ticket",

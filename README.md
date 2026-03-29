@@ -94,6 +94,11 @@ Este proyecto utiliza las siguientes librerías:
 - [jsPDF](https://github.com/parallax/jsPDF) - Generación del documento base.
 - [jsPDF-AutoTable](https://github.com/simonbengtsson/jspdf-autotable) - Generación de tablas de desglose.
 
+## 🔗 Repositorio
+
+Puedes encontrar el código fuente, reportar errores o contribuir al proyecto en nuestro repositorio oficial:
+[GitHub - DavidFranco3/generador-tickets](https://github.com/DavidFranco3/generador-tickets)
+
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT.
