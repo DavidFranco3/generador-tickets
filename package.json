@@ -1,0 +1,32 @@
+{
+  "name": "generador-tickets",
+  "version": "1.0.0",
+  "description": "Library for generating premium tickets with jsPDF",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "type-check": "tsc -p . --noEmit",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "ticket",
+    "pdf",
+    "jspdf",
+    "pos",
+    "thermal-printer"
+  ],
+  "author": "David Franco",
+  "license": "MIT",
+  "dependencies": {
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^3.6.0"
+  }
+}

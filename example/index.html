@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Ticket Generator | Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --success: #22c55e;
+            --info: #3b82f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.15) 0px, transparent 50%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #818cf8, #3b82f6, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.025em;
+        }
+
+        p.subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .demo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            .demo-section {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.2);
+        }
+
+        .option-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .option-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .option-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            border: none;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            opacity: 0.9;
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-bar {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+            box-shadow: 0 0 8px var(--success);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <header>
+                <h1>Ticket Generator Pro</h1>
+                <p class="subtitle">Genera tickets térmicos profesionales directamente desde el navegador con jsPDF.</p>
+            </header>
+
+            <div class="demo-section">
+                <div class="option-card" onclick="testTicket(80)">
+                    <span class="badge">Standard</span>
+                    <h3>Estandar 80mm</h3>
+                    <p>Ideal para impresoras térmicas de punto de venta comunes.</p>
+                    <button class="btn btn-primary">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        Generar Ticket
+                    </button>
+                </div>
+
+                <div class="option-card" onclick="testTicket(58)">
+                    <span class="badge">Compact</span>
+                    <h3>Compacto 58mm</h3>
+                    <p>Optimizado para impresoras portátiles bluetooth y terminales móviles.</p>
+                    <button class="btn btn-success">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        Generar Ticket
+                    </button>
+                </div>
+            </div>
+
+            <div class="status-bar">
+                <div>
+                    <span class="status-dot"></span>
+                    Biblioteca Activa (v1.0.0)
+                </div>
+                <div>Powered by jsPDF</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { printTicket } from '../src/index.js';
+
+        const sampleData = {
+            numero_control: 'OP-7788',
+            metodo_pago: 'EFECTIVO',
+            fecha_pago: new Date().toLocaleDateString('es-MX'),
+            hora_pago: new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' }),
+            facturas: [
+                {
+                    numero_control: 'F-101',
+                    total: 450.00,
+                    client: { nombre: 'ALBERTO RODRIGUEZ' },
+                    contract: { plan: { nombre: 'PLAN RESIDENCIAL 100MB' } },
+                    periodo: 'MAY 2026'
+                },
+                {
+                    numero_control: 'F-102',
+                    total: 450.00,
+                    client: { nombre: 'ALBERTO RODRIGUEZ' },
+                    contract: { plan: { nombre: 'PLAN RESIDENCIAL 100MB' } },
+                    periodo: 'JUN 2026'
+                }
+            ],
+            conceptos: [
+                { descripcion: 'RECARGO POR PAGO TARDÍO', monto: 50.00 }
+            ]
+        };
+
+        const companyInfo = {
+            nombre: 'SOLUCIONES HIDALQRO',
+            rfc: 'HID180101QRO',
+            telefono: '442 555 0199',
+            calle: 'CALLE PRINCIPAL',
+            numero_exterior: '456',
+            colonia: 'CENTRO HISTÓRICO',
+            cp: '76000'
+        };
+
+        window.testTicket = (width) => {
+            console.log(`Generando ticket de ${width}mm...`);
+            printTicket(sampleData, 1000, 50, {
+                width: width,
+                company: companyInfo,
+                atendio: 'DAVID FRANCO',
+                onAfterPrint: () => {
+                    console.log(`Ticket de ${width}mm generado con éxito`);
+                    // Podríamos añadir una notificación UI aquí
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
